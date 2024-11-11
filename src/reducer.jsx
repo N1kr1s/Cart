@@ -27,6 +27,16 @@ const reducer = (state, action) => {
       return { ...state, cart }
     }
 
+    case 'TOTAL_AMOUNT': {
+      const amount = state.cart.reduce((acc, next) => {
+        return acc + next.amount
+      }, 0)
+      const total = state.cart.reduce((acc, next) => {
+        return Math.round((acc + next.price * next.amount) * 100) / 100
+      }, 0)
+      return { ...state, amount, total }
+    }
+
     default:
       return state
   }

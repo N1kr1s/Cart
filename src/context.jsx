@@ -2,7 +2,6 @@ import React, { useContext, useReducer, useEffect } from 'react'
 import cartItems from './data'
 import reducer from './reducer'
 
-const url = 'https://course-api.com/react-useReducer-cart-project'
 const AppContext = React.createContext()
 
 const initialState = {
@@ -30,7 +29,9 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'DECREASE', payload: id })
   }
 
-  useEffect(() => {}, [cart])
+  useEffect(() => {
+    dispatch({ type: 'TOTAL_AMOUNT' })
+  }, [cart])
 
   return (
     <AppContext.Provider
